@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class TransferService {
@@ -27,6 +28,10 @@ public class TransferService {
 .changeAmount(idSender, senderNewAmount);
         accountRepository
 .changeAmount(idReceiver, receiverNewAmount);
+    }
+
+    public List<Account> getAllAccounts() {
+        return accountRepository.findAllAccounts();
     }
 }
 
