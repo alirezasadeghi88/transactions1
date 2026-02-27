@@ -33,5 +33,20 @@ public class TransferService {
     public List<Account> getAllAccounts() {
         return accountRepository.findAllAccounts();
     }
+
+    @Transactional
+    public void transferMoney(
+            long idSender,
+            long idReceiver,
+            BigDecimal amount) {
+        Account sender = accountRepository.findAccountById(idSender);
+        Account receiver = accountRepository.findAccountById(idReceiver);
+        BigDecimal senderNewAmount = sender.getAmount().subtract(amount);
+        BigDecimal receiverNewAmount = receiver.getAmount().add(amount);
+        accountRepository.changeAmount(idSender, senderNewAmount);
+        accountRepository.changeAmount(idReceiver, receiverNewAmount);
+        throw new RuntimeException("Oh no! Something went wrong!"); ❶
+    }
+
 }
 
