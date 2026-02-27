@@ -45,7 +45,7 @@ public class TransferService {
         BigDecimal receiverNewAmount = receiver.getAmount().add(amount);
         accountRepository.changeAmount(idSender, senderNewAmount);
         accountRepository.changeAmount(idReceiver, receiverNewAmount);
-        throw new RuntimeException("Oh no! Something went wrong!"); ❶
+        throw new RuntimeException("Oh no! Something went wrong!"); 
     }
 
 }
